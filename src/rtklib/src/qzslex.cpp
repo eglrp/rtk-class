@@ -409,12 +409,12 @@ namespace rtklib{
 		lexmsg_t *lex_msgs;
 		int i, prn, type, alert;
 		unsigned int b;
-		char buff[1024], *p;
+		char buff[1024]; const char *p;
 		FILE *fp;
 
 		trace(3, "readmsgs: file=%s sel=%d\n", file, sel);
 
-		if (!strcpy(p, strrchr(file, '.')) || (strcmp(p, ".lex") && strcmp(p, ".LEX"))) return 0;
+		if (!(p=strrchr(file, '.')) || (strcmp(p, ".lex") && strcmp(p, ".LEX"))) return 0;
 
 		if (!(fp = fopen(file, "r"))) {
 			trace(2, "lex message log open error: %s\n", file);

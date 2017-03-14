@@ -49,9 +49,7 @@ namespace rtklib{
 #ifdef __cplusplus
 extern "C" {
 #endif
-#ifdef WIN32
-#define WIN_DLL
-#endif
+
 #ifdef WIN_DLL
 #define EXPORT __declspec(dllexport) /* for Windows DLL */
 #else

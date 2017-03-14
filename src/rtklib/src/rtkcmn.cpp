@@ -3092,14 +3092,10 @@ extern int expath(const char *path, char *paths[], int nmax)
 #ifdef WIN32
     WIN32_FIND_DATA file;
     HANDLE h;
-	char dir[1024] = "", *p=nullptr;
+	char dir[1024] = "";const char *p = nullptr;
 	trace(3, "expath  : path=%s nmax=%d\n", path, nmax);
-	const char *p_ = strrchr(path, '\\');
-	if (p_)
-	{
-		strcpy(p, strrchr(path, '\\'));
-	}	
-    if (p) {
+		
+	if ((p = strrchr(path, '\\'))) {
         strncpy(dir,path,p-path+1); dir[p-path+1]='\0';
     }
     if ((h=FindFirstFile((LPCTSTR)path,&file))==INVALID_HANDLE_VALUE) {
@@ -3879,11 +3875,11 @@ extern int rtk_uncompress(const char *file, char *uncfile)
     return stat;
 }
 /* dummy application functions for shared library ----------------------------*/
-#ifdef WIN_DLL
+//#ifdef WIN_DLL
 extern int showmsg(char *format,...) {return 0;}
 extern void settspan(gtime_t ts, gtime_t te) {}
 extern void settime(gtime_t time) {}
-#endif
+//#endif
 
 /* dummy functions for lex extentions ----------------------------------------*/
 #ifndef EXTLEX
